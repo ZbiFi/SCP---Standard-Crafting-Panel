@@ -1,0 +1,1578 @@
+/*******************************************************************************
+        Name:
+        Location:
+        Description: Object template script
+
+            Created: by sFall Script Editor
+            Updated:
+
+*******************************************************************************/
+
+/* Include Files */
+#include "..\headers\define.h"
+#include "..\headers\command.h"
+#include "..\headers\sfall.h"
+#define NAME                    1563 //msg number of a script but from scripts.h - i did not use that
+/* Standard Script Procedures */
+procedure start;
+
+procedure use_p_proc;
+
+procedure talk_p_proc;
+
+procedure Node001;
+procedure Node002;
+procedure Node003;
+procedure Node004;
+procedure Node005;
+procedure Node005b;
+procedure Node005c;
+procedure Node501;
+procedure Node502;
+procedure Node503;
+procedure Node504;
+procedure Node505;
+procedure Node506;
+procedure Node507;
+procedure Node508;
+procedure Node509;
+procedure Node510;
+procedure Node511;
+procedure Node512;
+procedure Node513;
+procedure Node514;
+procedure Node006;
+procedure Node006b;
+procedure Node006c;
+procedure Node998;
+procedure Node999;
+procedure Node666;
+procedure Node700;
+procedure Node701;
+procedure Node702;
+procedure Node703;
+procedure Node704;
+procedure Node705;
+procedure Node706;
+procedure Node707;
+
+procedure item_craft_dismantle_caltulator_handler(variable arg0, variable arg1, variable arg2);
+procedure item_craft_craft_caltulator_handler(variable arg0, variable arg1, variable arg2);
+procedure get_item_stats_from_ini(variable arg0);
+procedure item_craft_handler(variable arg0, variable arg1);
+procedure item_craft_dismantle_skill_check_handler(variable arg0, variable arg1);
+procedure item_craft_craft_skill_check_handler(variable arg0, variable arg1);
+procedure item_craft_loader;
+procedure item_craft_dismantle_handler(variable arg0, variable arg1, variable arg2);
+procedure item_craft_craft_handler(variable arg0, variable arg1, variable arg2);
+procedure item_prototype_number_to_obj_pointer (variable arg0);
+procedure item_craft_craft_item_mats_check (variable arg0, variable arg1);
+procedure item_craft_craft_item_list_loop(variable arg0, variable arg1);
+procedure reward_player(variable arg0, variable arg1, variable arg2);
+
+procedure ChoseFromListItemTypeArmor;
+procedure ChoseFromListItemTypeWeapon;
+procedure ChoseFromListItemTypeAmmo;
+procedure ChoseFromListItemTypeMisc;
+procedure ChoseFromListItemTypeMeds;
+procedure ChoseFromListItemTypeExplosive;
+
+
+procedure ChooseFromList;
+procedure CLICK_PREV;
+procedure CLICK_0;
+procedure CLICK_1;
+procedure CLICK_2;
+procedure CLICK_3;
+procedure CLICK_4;
+procedure CLICK_MORE;
+
+procedure AFTER_CHOICE;
+
+variable itemArmorHandle := 0;
+//variable craft_mode := 0 // 0 default, 1 dismantle, 2 upgrade, 3 craft
+//GVAR_DIALOG_CRAFTING_ITEM_TYPE	0 default, 1 armor, 2 weapon, 3 ammo, 4 misc, 5 meds, 6 explosives
+variable items;
+variable global_variable_dialog_choice := 791;
+variable global_variable_dialog_crafting_choice := 792;
+variable global_variable_dialog_crafting_item_type := 793;
+
+variable leather_scraps;
+variable metal_scraps;
+variable scrap_electronics;
+variable medical_supplies;
+variable explosive_material;
+variable weapon_parts;
+variable empty_hypodermic;
+variable item_1;
+variable item_2;
+variable item_3;
+variable item_4;
+variable item_5;
+variable item_6;
+variable item_7;
+variable item_8;
+variable item_9;
+variable item_10;
+variable item_11;
+variable item_12;
+variable item_13;
+variable item_14;
+variable item_15;
+variable item_16;
+variable item_17;
+variable item_18;
+variable item_19;
+variable item_20;
+variable item_21;
+variable item_22;
+variable item_23;
+variable item_24;
+variable item_25;
+variable item_26;
+variable item_27;
+variable item_28;
+variable item_29;
+variable item_30;
+variable item_31;
+variable item_32;
+variable item_33;
+variable item_34;
+variable item_35;
+variable item_36;
+variable item_37;
+variable item_38;
+variable item_39;
+variable item_40;
+variable item_41;
+variable item_42;
+variable item_43;
+variable item_44;
+variable item_45;
+variable item_46;
+variable item_47;
+variable item_48;
+variable item_49;
+variable item_50;
+variable item_51;
+variable item_52;
+variable item_53;
+variable item_54;
+variable item_55;
+variable item_56;
+variable item_57;
+variable item_58;
+variable item_59;
+variable item_60;
+variable item_61;
+variable item_62;
+variable item_63;
+variable item_64;
+variable item_65;
+variable item_66;
+variable item_67;
+variable item_68;
+variable item_69;
+variable item_70;
+variable item_71;
+variable item_72;
+variable item_73;
+variable item_74;
+variable item_75;
+variable item_76;
+variable item_77;
+variable item_78;
+variable item_79;
+variable item_80;
+variable item_81;
+variable item_82;
+variable item_83;
+variable item_84;
+variable item_85;
+variable item_86;
+variable item_87;
+variable item_88;
+variable item_89;
+variable item_90;
+variable item_91;
+variable item_92;
+variable item_93;
+variable item_94;
+variable item_95;
+variable item_96;
+variable item_97;
+variable item_98;
+variable item_99;
+variable item_100;
+variable item_101;
+variable item_102;
+variable item_103;
+variable item_104;
+variable item_105;
+variable item_106;
+variable item_107;
+variable item_108;
+variable item_109;
+variable item_110;
+variable item_111;
+variable item_112;
+variable item_113;
+variable item_114;
+variable item_115;
+variable item_116;
+variable item_117;
+variable item_118;
+variable item_119;
+variable item_120;
+variable item_121;
+variable item_122;
+variable item_123;
+variable item_124;
+variable item_125;
+variable item_126;
+variable item_127;
+variable item_128;
+variable item_129;
+variable item_130;
+variable item_131;
+variable item_132;
+variable item_133;
+variable item_134;
+variable item_135;
+variable item_136;
+variable item_137;
+variable item_138;
+variable item_139;
+variable item_140;
+variable item_141;
+variable item_142;
+variable item_143;
+variable item_144;
+
+variable armor_string_start := 1201;
+variable misc_string_start := 1216;
+variable ammo_string_start := 1227;
+variable explosives_string_start := 1252;
+variable meds_string_start := 1259;
+variable weapon_string_start := 1275;
+variable armor_string_end := 1214;
+variable string_line := 1201;
+variable armor_string_reply;
+variable number_of_items := 144;
+
+
+/* Defines */
+
+
+/*****************************************************************
+   Local Variables which are saved.
+   All Local Variables need to be prepended by LVAR_
+*****************************************************************/
+
+
+/*******************************************************************
+   Imported variables from the Map scripts. These should only be
+   pointers and variables that need not be saved. If a variable
+   Needs to be saved, make it a map variable (MVAR_)
+*******************************************************************/
+
+
+/*******************************************************************
+   Local variables which do not need to be saved between map changes.
+*******************************************************************/
+
+
+/*******************************************************************
+*                           PROCEDURES                             *
+*******************************************************************/
+
+procedure start begin
+
+end
+
+procedure look_at_p_proc begin
+   //script_overrides;
+
+end
+
+procedure description_p_proc begin
+   //script_overrides;
+
+end
+
+procedure damage_p_proc begin
+
+end
+
+procedure talk_p_proc begin
+//[itemPid,item_dropped_1_pid, item_dropped_2_pid, item_dropped_1_quantity, item_dropped_2_quantity, skill_req_1, skill_req_2, skill_req_3, skill_req_1_dismantle, skill_req_2_dismantle, skill_req_3_dismantle, skill_req_1_craft, skill_req_2_craft, skill_req_3_craft, xp_gain_dismantle, xp_gain_craft]
+//[0,       1,                  2,                  3,                        4,                     5,           6,             7,            8,                    9,                     10,                  11,               12,                   13,               14,               15]
+//602 Leather_scraps
+//605 Metal_scraps
+//603 Scrap_electronics
+//604 Medical_supplies
+//601 Explosive_materials
+//
+//variable items := create_array_list(14);
+
+/*item_1 :=                  [74,  602,  0, 25,   0,    17,   -1,   -1,  15,   0,   0,      20,   0,   0,  25,   125];//,
+item_2 :=                  [265, 602,  0, 60,   0,    17,   -1,   -1,  20,   0,   0,      30,   0,   0,  100,  500];//,
+item_3 :=                  [1,   602,  0, 40,   0,    17,   -1,   -1,  25,   0,   0,      50,   0,   0,  70,   350];//,
+item_4 :=                  [379, 602,  0, 75,   0,    17,   -1,   -1,  30,   0,   0,      60,   0,   0,  100,   500];//,
+item_5 :=                  [2,   605,  0, 30,   0,    13,   -1,   -1,  30,   0,   0,      40,   0,   0,  110,   550];//,
+item_6 :=                  [380, 605,  0, 40,   0,    13,   -1,   -1,  35,   0,   0,      50,   0,   0,  190,   950];//,
+item_7 :=                  [240, 605,  0, 75,   0,    13,   2,   -1,   40,   40,   0,     70,   75,   0,  450,   2250];//,
+item_8 :=                  [17,  602,  605, 50, 40,   13,   0,  -1,    35,   50,   0,     40,   60,   0,  650,   3250];//,
+item_9 :=                  [381, 602,  605, 75, 50,   13,   0,   1,    40,   60,   25,    50,   80,   35,  800,   4000];//,
+item_10 :=                  [239, 602,  605, 100,75,   13,   0,   1,    45,   75,   30,    60,   100,   45,  480,   2400];//,
+item_11 :=                  [3,   605,  603, 200,100,  13,   12,   -1,  50,   60,   0,     75,    75,   0,  1250,   6250];//,
+item_12 :=                  [232, 605,  603, 300,150,  13,   12,   2,   60,   65,   40,    85,    80,   60,  1500,   7500];//,
+item_13 :=                  [348, 605,  603, 500,175,  13,   12,   2,   70,   70,   45,    100,   90,   70,  2000,   10000];//,
+item_14 :=                  [349, 605,  603, 750, 200,  13,   12,   2,   80,   75,   50,    120,   100,   80,  2500,   12500];//
+items := [item_1, item_2, item_3, item_4, item_5, item_6, item_7, item_8, item_9, item_10, item_11, item_12, item_13, item_14];
+*/
+   start_gdialog(1563, self_obj, 4, -1, -1);
+   gsay_start;
+   call Node001;
+   gsay_end;
+   end_dialogue;
+end
+procedure Node001 begin
+
+   //display_msg("Thirst level:" + items[0][0]);
+   //craft_mode := 0;
+   set_global_var(global_variable_dialog_crafting_choice, 0);
+   gsay_reply(1563, 153);
+   gsay_option(1563, 154, Node002, 50);
+   gsay_option(1563, 155, Node003, 50);
+   gsay_option(1563, 156, Node004, 50);
+   gsay_option(1563, 127, Node999, 50);
+   gsay_option(1563, 157, Node666, 50);
+end
+
+procedure Node002 begin
+   //craft_mode := 1;
+   set_global_var(global_variable_dialog_crafting_choice, 1);
+   set_global_var(global_variable_dialog_crafting_item_type, 0);
+   gsay_reply(1563, 163);
+   gsay_option(1563, 120, ChoseFromListItemTypeArmor, 50);
+   gsay_option(1563, 121, ChoseFromListItemTypeWeapon, 50);
+   gsay_option(1563, 122, ChoseFromListItemTypeAmmo, 50);
+   gsay_option(1563, 123, ChoseFromListItemTypeMisc, 50);
+   gsay_option(1563, 124, ChoseFromListItemTypeMeds, 50);
+   gsay_option(1563, 125, ChoseFromListItemTypeExplosive, 50);
+   gsay_option(1563, 126, Node001, 50);
+   gsay_option(1563, 127, Node999, 50);
+end
+
+procedure Node003 begin
+   //craft_mode := 2;
+   set_global_var(global_variable_dialog_crafting_choice, 2);
+   gsay_reply(1563, 179);
+   gsay_option(1563, 120, Node998, 50);
+   gsay_option(1563, 121, Node998, 50);
+   gsay_option(1563, 122, Node998, 50);
+   gsay_option(1563, 123, Node998, 50);
+   gsay_option(1563, 124, Node998, 50);
+   gsay_option(1563, 125, Node998, 50);
+   gsay_option(1563, 126, Node001, 50);
+   gsay_option(1563, 127, Node999, 50);
+end
+
+procedure Node004 begin
+   //craft_mode := 3;
+   set_global_var(global_variable_dialog_crafting_choice, 3);
+   gsay_reply(1563, 173);
+   gsay_option(1563, 120, ChoseFromListItemTypeArmor, 50);
+   gsay_option(1563, 121, ChoseFromListItemTypeWeapon, 50);
+   gsay_option(1563, 122, ChoseFromListItemTypeAmmo, 50);
+   gsay_option(1563, 123, ChoseFromListItemTypeMisc, 50);
+   gsay_option(1563, 124, ChoseFromListItemTypeMeds, 50);
+   gsay_option(1563, 125, ChoseFromListItemTypeExplosive, 50);
+   gsay_option(1563, 126, Node001, 50);
+   gsay_option(1563, 127, Node999, 50);
+end
+
+procedure ChoseFromListItemTypeArmor begin
+   set_global_var(global_variable_dialog_crafting_item_type, 1);
+   string_line := armor_string_start;
+   call ChooseFromList;
+   end
+procedure ChoseFromListItemTypeWeapon begin
+   set_global_var(global_variable_dialog_crafting_item_type, 2);
+   string_line := weapon_string_start;
+   call ChooseFromList;end
+procedure ChoseFromListItemTypeAmmo begin
+   set_global_var(global_variable_dialog_crafting_item_type, 3);
+   string_line := ammo_string_start;
+   call ChooseFromList;end
+procedure ChoseFromListItemTypeMisc begin
+   set_global_var(global_variable_dialog_crafting_item_type, 4);
+   string_line := misc_string_start;
+   call ChooseFromList;end
+procedure ChoseFromListItemTypeMeds begin
+   set_global_var(global_variable_dialog_crafting_item_type, 5);
+   string_line := meds_string_start;
+   call ChooseFromList;end
+procedure ChoseFromListItemTypeExplosive begin
+   set_global_var(global_variable_dialog_crafting_item_type, 6);
+   string_line := explosives_string_start;
+   call ChooseFromList;end
+
+
+procedure ChooseFromList begin
+
+   variable LVar0 := 0;
+
+   gsay_reply(1563, 170);
+
+   if (message_str(1563, (string_line - 1)) != "empty") then begin
+      gsay_option(1563, 129, CLICK_PREV, 50);
+   end
+   if (LVar0 == 0) then begin
+      if (message_str(1563, string_line + 0) != "empty") then begin
+         gsay_option(1563, (string_line + 0), CLICK_0, 50);
+      end
+      else begin
+         LVar0 := 1;
+      end
+   end
+   if (LVar0 == 0) then begin
+         if (message_str(1563, string_line + 1) != "empty") then begin
+            gsay_option(1563, (string_line + 1), CLICK_1, 50);
+         end
+      else begin
+         LVar0 := 1;
+      end
+   end
+   if (LVar0 == 0) then begin
+      if (message_str(1563, string_line + 2) != "empty") then begin
+         gsay_option(1563, (string_line + 2), CLICK_2, 50);
+      end
+      else begin
+         LVar0 := 1;
+      end
+   end
+   if (LVar0 == 0) then begin
+      if (message_str(1563, string_line + 3) != "empty") then begin
+         gsay_option(1563, (string_line + 3), CLICK_3, 50);
+      end
+      else begin
+         LVar0 := 1;
+      end
+   end
+   if (LVar0 == 0) then begin
+      if (message_str(1563, string_line + 4) != "empty") then begin
+         gsay_option(1563, (string_line + 4), CLICK_4, 50);
+      end
+      else begin
+         LVar0 := 1;
+      end
+   end
+   if (LVar0 == 0) then begin
+      if (message_str(1563, string_line + 5) != "empty") then begin
+         gsay_option(1563, 128, CLICK_MORE, 50);
+      end
+   end
+
+   gsay_option(1563, 126, Node001, 50);
+   gsay_option(1563, 127, Node999, 50);
+
+end
+
+procedure CLICK_PREV begin
+   string_line := string_line - 5;
+   call ChooseFromList();
+end
+
+procedure CLICK_0 begin
+   set_global_var(global_variable_dialog_choice, string_line+0);
+   call AFTER_CHOICE();
+end
+
+procedure CLICK_1 begin
+   set_global_var(global_variable_dialog_choice, string_line+1);
+   call AFTER_CHOICE();
+end
+
+procedure CLICK_2 begin
+   set_global_var(global_variable_dialog_choice, string_line+2);
+   call AFTER_CHOICE();
+end
+
+procedure CLICK_3 begin
+   set_global_var(global_variable_dialog_choice, string_line+3);
+   call AFTER_CHOICE();
+end
+
+procedure CLICK_4 begin
+   set_global_var(global_variable_dialog_choice, string_line+4);
+   call AFTER_CHOICE();
+end
+
+procedure CLICK_MORE begin
+   string_line := string_line + 5;
+   call ChooseFromList();
+end
+
+procedure AFTER_CHOICE begin
+
+   variable temp_var;
+   variable armor_list;
+   variable armor_text_list;
+   variable misc_list;
+   variable misc_text_list;
+   variable node_list;
+   variable crafting_mode;
+   variable item_list;
+   variable item_text_list;
+   variable ammo_list;
+   variable ammo_text_list;
+   variable explosives_list;
+   variable explosives_text_list;
+   variable drugs_list;
+   variable drugs_text_list;
+   variable weapons_list;
+   variable weapons_text_list;
+
+   variable i := 0;
+   variable item;
+
+   variable table_length :=0;
+
+   item_list := [74, 265, 1, 379, 2, 380, 240, 17, 381, 239, 3, 232, 348, 349, 276, 277, 553, 98, 100, 101, 126, 210, 52, 59, 14, 29, 30, 31, 111, 32, 382, 33, 34, 35, 36, 37, 38, 39, 95, 121, 163, 357, 358, 359, 360, 361, 362, 363, 25, 26, 27, 421, 206, 85, 47, 408, 91, 409, 40, 48, 49, 53, 87, 109, 110, 144, 259, 260, 273,4, 5, 6, 20, 21, 45, 115, 116, 160, 234, 235, 236, 319, 383, 384, 399, 407, 522, 517, 8, 9, 10, 18, 22, 23, 94, 122, 143, 161, 162, 241, 242, 261, 268, 283, 287, 296, 299, 300, 313, 332, 351, 352, 353, 354, 385, 388, 391, 392, 394, 398, 403, 404, 405, 500, 11, 12, 13, 350, 355, 387, 389, 395, 400, 15, 16, 24, 28, 118, 223, 401, 402, 406, 396, 397];
+   item_text_list := [1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208, 1209, 1210, 1211, 1212, 1213, 1214, 1216, 1217, 1218, 1219, 1220, 1221, 1222, 1223, 1224, 1225, 1227, 1228, 1229, 1230, 1231, 1232, 1233, 1234, 1235, 1236, 1237, 1238, 1239, 1240, 1241, 1242, 1243, 1244, 1245, 1246, 1247, 1248, 1249, 1250, 1252, 1253, 1254, 1255, 1256, 1257, 1259, 1260, 1261, 1262, 1263, 1264, 1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 1284, 1285, 1286, 1287, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302, 1303, 1304, 1305, 1306, 1307, 1308, 1309, 1310, 1311, 1312, 1313, 1314, 1315, 1316, 1317, 1318, 1319, 1320, 1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 1340, 1341, 1342, 1343, 1344, 1345, 1346, 1347, 1348, 1349];
+
+   armor_list := [74, 265, 1, 379, 2, 380, 240, 17, 381, 239, 3, 232, 348, 349];
+   armor_text_list := [1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208, 1209, 1210, 1211, 1212, 1213, 1214];
+
+   misc_list := [276, 277, 553, 98, 100, 101, 126, 210, 52, 59];
+   misc_text_list := [1216, 1217, 1218, 1219, 1220, 1221, 1222, 1223, 1224, 1225];
+
+   ammo_list := [14, 29, 30, 31, 111, 32, 382, 33, 34, 35, 36, 37, 38, 39, 95, 121, 163, 357, 358, 359, 360, 361, 362, 363];
+   ammo_text_list := [1227, 1228, 1229, 1230, 1231, 1232, 1233, 1234, 1235, 1236, 1237, 1238, 1239, 1240, 1241, 1242, 1243, 1244, 1245, 1246, 1247, 1248, 1249, 1250];
+
+   explosives_list := [25, 26, 27, 421, 206, 85];
+   explosives_text_list := [1252, 1253, 1254, 1255, 1256, 1257];
+
+   drugs_list := [47, 408, 91, 409, 40, 48, 49, 53, 87, 109, 110, 144, 259, 260, 273];
+   drugs_text_list := [1259, 1260, 1261, 1262, 1263, 1264, 1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273];
+
+   weapons_list := [4, 5, 6, 20, 21, 45, 115, 116, 160, 234, 235, 236, 319, 383, 384, 399, 407, 522, 517, 8, 9, 10, 18, 22, 23, 94, 122, 143, 161, 162, 241, 242, 261, 268, 283, 287, 296, 299, 300, 313, 332, 351, 352, 353, 354, 385, 388, 391, 392, 394, 398, 403, 404, 405, 500, 11, 12, 13, 350, 355, 387, 389, 395, 400, 15, 16, 24, 28, 118, 223, 401, 402, 406, 396, 397];
+   weapons_text_list := [1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 1284, 1285, 1286, 1287, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302, 1303, 1304, 1305, 1306, 1307, 1308, 1309, 1310, 1311, 1312, 1313, 1314, 1315, 1316, 1317, 1318, 1319, 1320, 1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 1340, 1341, 1342, 1343, 1344, 1345, 1346, 1347, 1348, 1349];
+
+   //node_list := [Node501, Node502, Node503, Node504, Node505, Node506, Node507, Node508, Node509, Node510, Node511, Node512, Node513, Node514];
+   temp_var := global_var(global_variable_dialog_choice);
+   crafting_mode := global_var(global_variable_dialog_crafting_choice);
+
+  foreach (i:  item in item_list) begin
+      if (temp_var == item_text_list[i]) then begin
+         //display_msg("Craft mode" + crafting_mode);
+         call item_craft_handler(item_list[i],crafting_mode);
+      end
+      else begin
+         call Node001;
+         end
+  end
+
+end
+
+procedure Node666 begin
+   gsay_reply(1563, 199);
+      gsay_option(1563, 200, Node700, 50);
+      gsay_option(1563, 201, Node701, 50);
+      gsay_option(1563, 202, Node702, 50);
+      gsay_option(1563, 203, Node703, 50);
+      gsay_option(1563, 204, Node704, 50);
+      gsay_option(1563, 205, Node705, 50);
+      gsay_option(1563, 206, Node706, 50);
+      gsay_option(1563, 127, Node999, 50);
+
+end
+
+procedure Node700 begin
+   variable Lvar1 := create_object_sid(602, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1000);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node701 begin
+   variable Lvar1 := create_object_sid(605, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1000);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node702 begin
+   variable Lvar1 := create_object_sid(603, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1000);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node703 begin
+   variable Lvar1 := create_object_sid(601, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1000);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node704 begin
+   variable Lvar1 := create_object_sid(606, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1000);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node705 begin
+   variable Lvar1 := create_object_sid(604, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1000);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node706 begin
+   variable Lvar1 := create_object_sid(483, 0, 0, -1);
+   add_mult_objs_to_inven(dude_obj, LVar1, 1);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure Node999 begin
+end
+
+procedure Node998 begin
+   gsay_reply(1563, 149);
+   gsay_option(1563, 126, Node001, 50);
+end
+
+procedure item_craft_craft_caltulator_handler (variable item_type, variable itemPID, variable items) begin
+   variable item;
+   variable mats_to_delete_base;
+   variable mats_to_return;
+   variable skill_1;
+   variable item_dropped_quantity:=0;
+   variable skill_2;
+   variable skill_3;
+   variable skill_1_craft_level:=0;
+   variable skill_2_craft_level:=0;
+   variable skill_3_craft_level:=0;
+   variable skill_1_flag:=0;
+   variable skill_2_flag:=0;
+   variable skill_3_flag:=0;
+   variable sum_skill_flag :=0;
+   variable skill_adj:=0;
+   variable base_quantity_adj := 50; //with minmal skill how many 50% will player get
+   variable modifier_quantity_adj_1 := 0; //mod from skill if >= min but max
+   variable modifier_quantity_adj_2 := 0; //mod from skill if >= min but max
+   variable modifier_quantity_adj_3 := 0; //mod from skill if >= min but max
+
+   mats_to_delete_base := 0;
+
+      for (item := 0; item < number_of_items; item++) begin
+      //display_msg("item: " + item + " items: " + items[item]);
+      if (items[item][0]==itemPID)then begin
+         if (items[item][1]==item_type) then begin
+            item_dropped_quantity := items[item][3];
+           //display_msg("TRUE1");
+         end
+         if (items[item][2]==item_type)then begin
+            item_dropped_quantity := items[item][4];
+            //display_msg("TRUE2");
+         end
+         skill_1 := items[item][5];
+         skill_2 := items[item][6];
+         skill_3 := items[item][7];
+         skill_1_craft_level:=items[item][11];
+         skill_2_craft_level:=items[item][12];
+         skill_3_craft_level:=items[item][13];
+
+      end
+   end
+
+   if (skill_1 > -1) then begin skill_1_flag :=1; end else begin skill_1_flag :=0; end
+   if (skill_2 > -1) then begin skill_2_flag :=1; end else begin skill_2_flag :=0; end
+   if (skill_3 > -1) then begin skill_3_flag :=1; end else begin skill_3_flag :=0; end
+
+   if (skill_3==-1) then begin
+      if (skill_2 == -1) then begin
+         if (has_skill(dude_obj,skill_1) >= skill_1_craft_level) then begin
+            modifier_quantity_adj_1 := has_skill(dude_obj, skill_1) - skill_1_craft_level;
+            if (modifier_quantity_adj_1 > 50) then begin modifier_quantity_adj_1 := 50; end
+         end
+      end
+      else
+         if (has_skill(dude_obj,skill_2) >= skill_2_craft_level) then begin
+            modifier_quantity_adj_2 := has_skill(dude_obj, skill_2) - skill_2_craft_level;
+         end
+         if (has_skill(dude_obj,skill_1) >= skill_1_craft_level) then begin
+            modifier_quantity_adj_1 := has_skill(dude_obj, skill_1) - skill_1_craft_level;
+         end
+         if (modifier_quantity_adj_2 > 50) then begin modifier_quantity_adj_2 := 50; end
+         if (modifier_quantity_adj_1 > 50) then begin modifier_quantity_adj_1 := 50; end
+
+   end
+   else begin
+      if (has_skill(dude_obj,skill_3) >= skill_3_craft_level) then begin
+         modifier_quantity_adj_3 := has_skill(dude_obj, skill_3) - skill_3_craft_level;
+      end
+      if (has_skill(dude_obj,skill_2) >= skill_2_craft_level) then begin
+         modifier_quantity_adj_2 := has_skill(dude_obj, skill_2) - skill_2_craft_level;
+      end
+      if (has_skill(dude_obj,skill_1) >= skill_1_craft_level) then begin
+         modifier_quantity_adj_1 := has_skill(dude_obj, skill_1) - skill_1_craft_level;
+      end
+      if (modifier_quantity_adj_3 > 50) then begin modifier_quantity_adj_3 := 50; end
+      if (modifier_quantity_adj_2 > 50) then begin modifier_quantity_adj_2 := 50; end
+      if (modifier_quantity_adj_1 > 50) then begin modifier_quantity_adj_1 := 50; end
+   end
+
+   sum_skill_flag := skill_1_flag + skill_2_flag + skill_3_flag;
+
+   if (sum_skill_flag>0) then begin
+     mats_to_delete_base := base_quantity_adj-((modifier_quantity_adj_1+modifier_quantity_adj_2+modifier_quantity_adj_3)/sum_skill_flag);
+   end
+   else begin mats_to_delete_base := -1; end
+   //display_msg ("Add mats" + mats_to_delete_base);
+   //display_msg((item_dropped_quantity * (100 + mats_to_delete_base ) / 100));
+return item_dropped_quantity *(100 + mats_to_delete_base )/ 100;
+
+end
+
+procedure item_craft_dismantle_caltulator_handler (variable item_type, variable itemPID, variable items) begin
+   variable item;
+   variable mats_to_return_base;
+   variable mats_to_return;
+   variable skill_1;
+   variable item_dropped_quantity:=0;
+   variable skill_2;
+   variable skill_3;
+   variable skill_1_dismantle_level:=0;
+   variable skill_2_dismantle_level:=0;
+   variable skill_3_dismantle_level:=0;
+   variable skill_1_flag:=0;
+   variable skill_2_flag:=0;
+   variable skill_3_flag:=0;
+   variable sum_skill_flag :=0;
+   variable skill_adj:=0;
+   variable base_quantity_adj := 50; //with minmal skill how many 50% will player get
+   variable modifier_quantity_adj_1 := 0; //mod from skill if >= min but max
+   variable modifier_quantity_adj_2 := 0; //mod from skill if >= min but max
+   variable modifier_quantity_adj_3 := 0; //mod from skill if >= min but max
+   mats_to_return_base := 0;
+   for (item := 0; item < number_of_items; item++) begin
+      //display_msg("item: " + item + " items: " + items[item]);
+      if (items[item][0]==itemPID)then begin
+         if (items[item][1]==item_type) then begin
+            item_dropped_quantity := items[item][3];
+         end
+         if (items[item][2]==item_type)then begin
+            item_dropped_quantity := items[item][4];
+         end
+         skill_1 := items[item][5];
+         skill_2 := items[item][6];
+         skill_3 := items[item][7];
+         skill_1_dismantle_level:=items[item][8];
+         skill_2_dismantle_level:=items[item][9];
+         skill_3_dismantle_level:=items[item][10];
+
+      end
+   end
+   if (skill_1 > -1) then begin skill_1_flag :=1; end else begin skill_1_flag :=0; end
+   if (skill_2 > -1) then begin skill_2_flag :=1; end else begin skill_2_flag :=0; end
+   if (skill_3 > -1) then begin skill_3_flag :=1; end else begin skill_3_flag :=0; end
+
+   //display_msg("Skill1: " + skill_1 + " Skill1flag: " + skill_1_flag + " Skilldismantle: " + skill_1_dismantle_level);
+   //display_msg("Skill2: " + skill_2 + " Skill2flag: " + skill_2_flag + " Skilldismantle: " + skill_2_dismantle_level);
+   //display_msg("Skill3: " + skill_3 + " Skill3flag: " + skill_3_flag + " Skilldismantle: " + skill_3_dismantle_level);
+
+   if (skill_3==-1) then begin
+      if (skill_2 == -1) then begin
+         if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level) then begin
+            modifier_quantity_adj_1 := has_skill(dude_obj, skill_1) - skill_1_dismantle_level;
+            if (modifier_quantity_adj_1 > 50) then begin modifier_quantity_adj_1 := 50; end
+         end
+      end
+      else
+         if (has_skill(dude_obj,skill_2) >= skill_2_dismantle_level) then begin
+            modifier_quantity_adj_2 := has_skill(dude_obj, skill_2) - skill_2_dismantle_level;
+         end
+         if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level) then begin
+            modifier_quantity_adj_1 := has_skill(dude_obj, skill_1) - skill_1_dismantle_level;
+         end
+         if (modifier_quantity_adj_2 > 50) then begin modifier_quantity_adj_2 := 50; end
+         if (modifier_quantity_adj_1 > 50) then begin modifier_quantity_adj_1 := 50; end
+
+   end
+   else begin
+      if (has_skill(dude_obj,skill_3) >= skill_3_dismantle_level) then begin
+         modifier_quantity_adj_3 := has_skill(dude_obj, skill_3) - skill_3_dismantle_level;
+      end
+      if (has_skill(dude_obj,skill_2) >= skill_2_dismantle_level) then begin
+         modifier_quantity_adj_2 := has_skill(dude_obj, skill_2) - skill_2_dismantle_level;
+      end
+      if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level) then begin
+         modifier_quantity_adj_1 := has_skill(dude_obj, skill_1) - skill_1_dismantle_level;
+      end
+      if (modifier_quantity_adj_3 > 50) then begin modifier_quantity_adj_3 := 50; end
+      if (modifier_quantity_adj_2 > 50) then begin modifier_quantity_adj_2 := 50; end
+      if (modifier_quantity_adj_1 > 50) then begin modifier_quantity_adj_1 := 50; end
+   end
+
+   sum_skill_flag := skill_1_flag + skill_2_flag + skill_3_flag;
+
+   if (sum_skill_flag>0) then begin
+     mats_to_return_base := base_quantity_adj+((modifier_quantity_adj_1+modifier_quantity_adj_2+modifier_quantity_adj_3)/sum_skill_flag);
+   end
+   else begin mats_to_return_base := 0; end
+
+   //display_msg("item_return_base:" + mats_to_return_base);
+   //display_msg(item_dropped_quantity * mats_to_return_base / 100);
+return item_dropped_quantity * mats_to_return_base / 100;
+
+end
+
+procedure item_craft_loader begin
+
+   variable local_items;
+   item_1 := get_item_stats_from_ini(message_str(1563, 1201));
+   item_2 := get_item_stats_from_ini(message_str(1563, 1202));
+   item_3 := get_item_stats_from_ini(message_str(1563, 1203));
+   item_4 := get_item_stats_from_ini(message_str(1563, 1204));
+   item_5 := get_item_stats_from_ini(message_str(1563, 1205));
+   item_6 := get_item_stats_from_ini(message_str(1563, 1206));
+   item_7 := get_item_stats_from_ini(message_str(1563, 1207));
+   item_8 := get_item_stats_from_ini(message_str(1563, 1208));
+   item_9 := get_item_stats_from_ini(message_str(1563, 1209));
+   item_10 := get_item_stats_from_ini(message_str(1563, 1210));
+   item_11 := get_item_stats_from_ini(message_str(1563, 1211));
+   item_12 := get_item_stats_from_ini(message_str(1563, 1212));
+   item_13 := get_item_stats_from_ini(message_str(1563, 1213));
+   item_14 := get_item_stats_from_ini(message_str(1563, 1214));
+   item_15 := get_item_stats_from_ini(message_str(1563, 1216));
+   item_16 := get_item_stats_from_ini(message_str(1563, 1217));
+   item_17 := get_item_stats_from_ini(message_str(1563, 1218));
+   item_18 := get_item_stats_from_ini(message_str(1563, 1219));
+   item_19 := get_item_stats_from_ini(message_str(1563, 1220));
+   item_20 := get_item_stats_from_ini(message_str(1563, 1221));
+   item_21 := get_item_stats_from_ini(message_str(1563, 1222));
+   item_22 := get_item_stats_from_ini(message_str(1563, 1223));
+   item_23 := get_item_stats_from_ini(message_str(1563, 1224));
+   item_24 := get_item_stats_from_ini(message_str(1563, 1225));
+   item_25 := get_item_stats_from_ini(message_str(1563, 1227));
+   item_26 := get_item_stats_from_ini(message_str(1563, 1228));
+   item_27 := get_item_stats_from_ini(message_str(1563, 1229));
+   item_28 := get_item_stats_from_ini(message_str(1563, 1230));
+   item_29 := get_item_stats_from_ini(message_str(1563, 1231));
+   item_30 := get_item_stats_from_ini(message_str(1563, 1232));
+   item_31 := get_item_stats_from_ini(message_str(1563, 1233));
+   item_32 := get_item_stats_from_ini(message_str(1563, 1234));
+   item_33 := get_item_stats_from_ini(message_str(1563, 1235));
+   item_34 := get_item_stats_from_ini(message_str(1563, 1236));
+   item_35 := get_item_stats_from_ini(message_str(1563, 1237));
+   item_36 := get_item_stats_from_ini(message_str(1563, 1238));
+   item_37 := get_item_stats_from_ini(message_str(1563, 1239));
+   item_38 := get_item_stats_from_ini(message_str(1563, 1240));
+   item_39 := get_item_stats_from_ini(message_str(1563, 1241));
+   item_40 := get_item_stats_from_ini(message_str(1563, 1242));
+   item_41 := get_item_stats_from_ini(message_str(1563, 1243));
+   item_42 := get_item_stats_from_ini(message_str(1563, 1244));
+   item_43 := get_item_stats_from_ini(message_str(1563, 1245));
+   item_44 := get_item_stats_from_ini(message_str(1563, 1246));
+   item_45 := get_item_stats_from_ini(message_str(1563, 1247));
+   item_46 := get_item_stats_from_ini(message_str(1563, 1248));
+   item_47 := get_item_stats_from_ini(message_str(1563, 1249));
+   item_48 := get_item_stats_from_ini(message_str(1563, 1250));
+   item_49 := get_item_stats_from_ini(message_str(1563, 1252));
+   item_50 := get_item_stats_from_ini(message_str(1563, 1253));
+   item_51 := get_item_stats_from_ini(message_str(1563, 1254));
+   item_52 := get_item_stats_from_ini(message_str(1563, 1255));
+   item_53 := get_item_stats_from_ini(message_str(1563, 1256));
+   item_54 := get_item_stats_from_ini(message_str(1563, 1257));
+   item_55 := get_item_stats_from_ini(message_str(1563, 1259));
+   item_56 := get_item_stats_from_ini(message_str(1563, 1260));
+   item_57 := get_item_stats_from_ini(message_str(1563, 1261));
+   item_58 := get_item_stats_from_ini(message_str(1563, 1262));
+   item_59 := get_item_stats_from_ini(message_str(1563, 1263));
+   item_60 := get_item_stats_from_ini(message_str(1563, 1264));
+   item_61 := get_item_stats_from_ini(message_str(1563, 1265));
+   item_62 := get_item_stats_from_ini(message_str(1563, 1266));
+   item_63 := get_item_stats_from_ini(message_str(1563, 1267));
+   item_64 := get_item_stats_from_ini(message_str(1563, 1268));
+   item_65 := get_item_stats_from_ini(message_str(1563, 1269));
+   item_66 := get_item_stats_from_ini(message_str(1563, 1270));
+   item_67 := get_item_stats_from_ini(message_str(1563, 1271));
+   item_68 := get_item_stats_from_ini(message_str(1563, 1272));
+   item_69 := get_item_stats_from_ini(message_str(1563, 1273));
+   item_70 := get_item_stats_from_ini(message_str(1563, 1275));
+   item_71 := get_item_stats_from_ini(message_str(1563, 1276));
+   item_72 := get_item_stats_from_ini(message_str(1563, 1277));
+   item_73 := get_item_stats_from_ini(message_str(1563, 1278));
+   item_74 := get_item_stats_from_ini(message_str(1563, 1279));
+   item_75 := get_item_stats_from_ini(message_str(1563, 1280));
+   item_76 := get_item_stats_from_ini(message_str(1563, 1281));
+   item_77 := get_item_stats_from_ini(message_str(1563, 1282));
+   item_78 := get_item_stats_from_ini(message_str(1563, 1283));
+   item_79 := get_item_stats_from_ini(message_str(1563, 1284));
+   item_80 := get_item_stats_from_ini(message_str(1563, 1285));
+   item_81 := get_item_stats_from_ini(message_str(1563, 1286));
+   item_82 := get_item_stats_from_ini(message_str(1563, 1287));
+   item_83 := get_item_stats_from_ini(message_str(1563, 1288));
+   item_84 := get_item_stats_from_ini(message_str(1563, 1289));
+   item_85 := get_item_stats_from_ini(message_str(1563, 1290));
+   item_86 := get_item_stats_from_ini(message_str(1563, 1291));
+   item_87 := get_item_stats_from_ini(message_str(1563, 1292));
+   item_88 := get_item_stats_from_ini(message_str(1563, 1293));
+   item_89 := get_item_stats_from_ini(message_str(1563, 1294));
+   item_90 := get_item_stats_from_ini(message_str(1563, 1295));
+   item_91 := get_item_stats_from_ini(message_str(1563, 1296));
+   item_92 := get_item_stats_from_ini(message_str(1563, 1297));
+   item_93 := get_item_stats_from_ini(message_str(1563, 1298));
+   item_94 := get_item_stats_from_ini(message_str(1563, 1299));
+   item_95 := get_item_stats_from_ini(message_str(1563, 1300));
+   item_96 := get_item_stats_from_ini(message_str(1563, 1301));
+   item_97 := get_item_stats_from_ini(message_str(1563, 1302));
+   item_98 := get_item_stats_from_ini(message_str(1563, 1303));
+   item_99 := get_item_stats_from_ini(message_str(1563, 1304));
+   item_100 := get_item_stats_from_ini(message_str(1563, 1305));
+   item_101 := get_item_stats_from_ini(message_str(1563, 1306));
+   item_102 := get_item_stats_from_ini(message_str(1563, 1307));
+   item_103 := get_item_stats_from_ini(message_str(1563, 1308));
+   item_104 := get_item_stats_from_ini(message_str(1563, 1309));
+   item_105 := get_item_stats_from_ini(message_str(1563, 1310));
+   item_106 := get_item_stats_from_ini(message_str(1563, 1311));
+   item_107 := get_item_stats_from_ini(message_str(1563, 1312));
+   item_108 := get_item_stats_from_ini(message_str(1563, 1313));
+   item_109 := get_item_stats_from_ini(message_str(1563, 1314));
+   item_110 := get_item_stats_from_ini(message_str(1563, 1315));
+   item_111 := get_item_stats_from_ini(message_str(1563, 1316));
+   item_112 := get_item_stats_from_ini(message_str(1563, 1317));
+   item_113 := get_item_stats_from_ini(message_str(1563, 1318));
+   item_114 := get_item_stats_from_ini(message_str(1563, 1319));
+   item_115 := get_item_stats_from_ini(message_str(1563, 1320));
+   item_116 := get_item_stats_from_ini(message_str(1563, 1321));
+   item_117 := get_item_stats_from_ini(message_str(1563, 1322));
+   item_118 := get_item_stats_from_ini(message_str(1563, 1323));
+   item_119 := get_item_stats_from_ini(message_str(1563, 1324));
+   item_120 := get_item_stats_from_ini(message_str(1563, 1325));
+   item_121 := get_item_stats_from_ini(message_str(1563, 1326));
+   item_122 := get_item_stats_from_ini(message_str(1563, 1327));
+   item_123 := get_item_stats_from_ini(message_str(1563, 1328));
+   item_124 := get_item_stats_from_ini(message_str(1563, 1329));
+   item_125 := get_item_stats_from_ini(message_str(1563, 1330));
+   item_126 := get_item_stats_from_ini(message_str(1563, 1331));
+   item_127 := get_item_stats_from_ini(message_str(1563, 1332));
+   item_128 := get_item_stats_from_ini(message_str(1563, 1333));
+   item_129 := get_item_stats_from_ini(message_str(1563, 1334));
+   item_130 := get_item_stats_from_ini(message_str(1563, 1335));
+   item_131 := get_item_stats_from_ini(message_str(1563, 1336));
+   item_132 := get_item_stats_from_ini(message_str(1563, 1337));
+   item_133 := get_item_stats_from_ini(message_str(1563, 1338));
+   item_134 := get_item_stats_from_ini(message_str(1563, 1339));
+   item_135 := get_item_stats_from_ini(message_str(1563, 1340));
+   item_136 := get_item_stats_from_ini(message_str(1563, 1341));
+   item_137 := get_item_stats_from_ini(message_str(1563, 1342));
+   item_138 := get_item_stats_from_ini(message_str(1563, 1343));
+   item_139 := get_item_stats_from_ini(message_str(1563, 1344));
+   item_140 := get_item_stats_from_ini(message_str(1563, 1345));
+   item_141 := get_item_stats_from_ini(message_str(1563, 1346));
+   item_142 := get_item_stats_from_ini(message_str(1563, 1347));
+   item_143 := get_item_stats_from_ini(message_str(1563, 1348));
+   item_144 := get_item_stats_from_ini(message_str(1563, 1349));
+
+   local_items := [item_1, item_2, item_3, item_4, item_5, item_6, item_7, item_8, item_9,
+   item_10, item_11, item_12, item_13, item_14, item_15, item_16, item_17, item_18, item_19,
+   item_20, item_21, item_22, item_23, item_24, item_25, item_26, item_27, item_28, item_29,
+   item_30, item_31, item_32, item_33, item_34, item_35, item_36, item_37, item_38, item_39,
+   item_40, item_41, item_42, item_43, item_44, item_45, item_46, item_47, item_48, item_49,
+   item_50, item_51, item_52, item_53, item_54, item_55, item_56, item_57, item_58, item_59,
+   item_60, item_61, item_62, item_63, item_64, item_65, item_66, item_67, item_68, item_69,
+   item_70, item_71, item_72, item_73, item_74, item_75, item_76, item_77, item_78, item_79,
+   item_80, item_81, item_82, item_83, item_84, item_85, item_86, item_87, item_88, item_89,
+   item_90, item_91, item_92, item_93, item_94, item_95, item_96, item_97, item_98, item_99,
+   item_100, item_101, item_102, item_103, item_104, item_105, item_106, item_107, item_108, item_109,
+   item_110, item_111, item_112, item_113, item_114, item_115, item_116, item_117, item_118, item_119,
+   item_120, item_121, item_122, item_123, item_124, item_125, item_126, item_127, item_128, item_129,
+   item_130, item_131, item_132, item_133, item_134, item_135, item_136, item_137, item_138, item_139,
+   item_140, item_141, item_142, item_143, item_144
+   ];
+
+   return local_items;
+end
+
+procedure item_craft_craft_handler(variable item_craft, variable items, variable craft_mode) begin
+
+
+   //item_craft = PID of item
+   variable number_of_items;
+   variable potencial_mats_list;
+   variable potencial_mats_list_name;
+   variable item;
+   variable i,j;
+   variable item_string;
+   variable temp;
+   variable armor_list;
+   variable weapon_list;
+   variable misc_list;
+   variable explosives_list;
+   variable meds_list;
+   variable ammo_list;
+   variable craft_type_list;
+   variable selected_list;
+   variable temp_logic_mats_list;
+   variable temp_logic_mats_list_bool;
+   variable leather_jacket, combat_leather_jacket,leather_armor,leather_armor_mk2,metal_armor,metal_armor_mk2,tesla_armor,combat_armor,combat_armor_mk2,brotherhood_armor,power_armor,hardened_power_armor,advance_power_armor,advance_power_armor_mk2;
+   variable gecko_pelt, golden_gecko_pelt, fire_gecko_pelt, junk, radio, lighter, water_flask, stealth_boy, geiger_counter, motion_sensor;
+   variable explosive_rocket, _10mm_jhp, _10mm_ap, _44_magnum_jhp, _44_magnum_fmj, flamethrower_fuel, flamethrower_fuel_mk_II, _14mm_ap, _223mm_fmj, _5mm_jhp, _5mm_ap, rocket_ap, small_energy_cell, microfusion_cell, _12_ga_shotgun_shell, _9mm_ball, _bb, _45_caliber, _2mm_ec, _4_7mm_caseless, _9mm, hn_needler_cartrige, hn_ap_needler_cartrige, _7_62mm;
+   variable grenade_frag, grenade_plasma, grenade_pulse, holy_hand_grenade, dynamite, plastic_expl;
+   variable first_aid_kit, field_medic_first_aid_kit, doctors_bag, paramedics_bag, stimpak, radaway, antidote, mentats, buffout, rad_x, psycho, super_stimpak, jet, jet_antidote, healing_powder;
+   variable knife, club, sledgehammer, crowbar, brass_nuckles, throwing_knife, super_sledge, ripper, cattle_prod, spiked_nuckles, power_fist, combat_knife, switchblade, shiv, wrench, super_cattle_prod, mega_power_fist, wakisashi_blade, little_jesus, _10mm_pistol, _10mm_smg, hunting_rifle, desert_eagle_44, _14mm_pistol, assault_rifle, shotgun, _9mm_mauser, sniper_rifle, red_ryder_bb_gun, red_ryder_le_bb_gun, _223_pistol, combat_shotgun, jonny_s_bb_gun, h_k_caws, tommy_gun, scoped_hunting_rifle, h_k_p90c, pipe_rifle, zip_gun, _44_magnum_revolver, m3a1_grease_gun_smg, fn_fal, h_k_g11, xl70e3, pancor_jackhammer, sawed_off_shotgun, needler_pistol, h_k_g11e, m72_gauss_rifle, ppk12_gauss_pistol, _44_magnum_speed_load, fn_fal_night_sight, desert_eagle_exp_mag, assault_rifle_exp_mag, fn_fal_hpfa, flamer, minigun, rocketlauncher, bozar, light_support_weapon, m60, avenger_minigun, vindicator_minigun, improved_flamer, plasma_rifle, laser_pistol, plasma_pistol, gatling_laser, laser_rifle, turbo_plasma_rifle, laser_rifle_ext_cap, magneto_laser_pistol, plasma_pistol_ext_cap, yk32_pulse_pistol, yk42b_pulse_rifle;
+
+   craft_type_list := global_var(global_variable_dialog_crafting_item_type);
+
+   leather_scraps := create_object_sid(602, 0, 0, -1);
+   metal_scraps := create_object_sid(605, 0, 0, -1);
+   scrap_electronics := create_object_sid(603, 0, 0, -1);
+   medical_supplies := create_object_sid(604, 0, 0, -1);
+   explosive_material := create_object_sid(601, 0, 0, -1);
+   weapon_parts := create_object_sid(606, 0, 0, -1);
+
+   empty_hypodermic := create_object_sid(318, 0, 0, -1);
+
+   leather_jacket := create_object_sid(74, 0, 0, -1);
+   combat_leather_jacket := create_object_sid(265, 0, 0, -1);
+   leather_armor := create_object_sid(1, 0, 0, -1);
+   leather_armor_mk2 := create_object_sid(379, 0, 0, -1);
+   metal_armor:= create_object_sid(2, 0, 0, -1);
+   metal_armor_mk2:= create_object_sid(380, 0, 0, -1);
+   tesla_armor:= create_object_sid(240, 0, 0, -1);
+   combat_armor:= create_object_sid(17, 0, 0, -1);
+   combat_armor_mk2:= create_object_sid(381, 0, 0, -1);
+   brotherhood_armor:= create_object_sid(239, 0, 0, -1);
+   power_armor:= create_object_sid(3, 0, 0, -1);
+   hardened_power_armor:= create_object_sid(232, 0, 0, -1);
+   advance_power_armor:= create_object_sid(348, 0, 0, -1);
+   advance_power_armor_mk2:= create_object_sid(349, 0, 0, -1);
+
+   gecko_pelt := create_object_sid(276, 0, 0, -1);
+   golden_gecko_pelt := create_object_sid(277, 0, 0, -1);
+   fire_gecko_pelt:= create_object_sid(533, 0, 0, -1);
+   junk:= create_object_sid(98, 0, 0, -1);
+   radio:= create_object_sid(100, 0, 0, -1);
+   lighter:= create_object_sid(101, 0, 0, -1);
+   water_flask:= create_object_sid(126, 0, 0, -1);
+   stealth_boy:= create_object_sid(210, 0, 0, -1);
+   geiger_counter:= create_object_sid(52, 0, 0, -1);
+   motion_sensor:= create_object_sid(59, 0, 0, -1);
+
+   explosive_rocket := create_object_sid(14, 0, 0, -1);
+   _10mm_jhp := create_object_sid(29, 0, 0, -1);
+   _10mm_ap := create_object_sid(30, 0, 0, -1);
+   _44_magnum_jhp := create_object_sid(31, 0, 0, -1);
+   _44_magnum_fmj := create_object_sid(111, 0, 0, -1);
+   flamethrower_fuel := create_object_sid(32, 0, 0, -1);
+   flamethrower_fuel_mk_II := create_object_sid(382, 0, 0, -1);
+   _14mm_ap := create_object_sid(33, 0, 0, -1);
+   _223mm_fmj := create_object_sid(34, 0, 0, -1);
+   _5mm_jhp := create_object_sid(35, 0, 0, -1);
+   _5mm_ap := create_object_sid(36, 0, 0, -1);
+   rocket_ap := create_object_sid(37, 0, 0, -1);
+   small_energy_cell := create_object_sid(38, 0, 0, -1);
+   microfusion_cell := create_object_sid(39, 0, 0, -1);
+   _12_ga_shotgun_shell := create_object_sid(95, 0, 0, -1);
+   _9mm_ball := create_object_sid(121, 0, 0, -1);
+   _bb := create_object_sid(163, 0, 0, -1);
+   _45_caliber := create_object_sid(357, 0, 0, -1);
+   _2mm_ec := create_object_sid(358, 0, 0, -1);
+   _4_7mm_caseless := create_object_sid(359, 0, 0, -1);
+   _9mm := create_object_sid(360, 0, 0, -1);
+   hn_needler_cartrige := create_object_sid(361, 0, 0, -1);
+   hn_ap_needler_cartrige := create_object_sid(362, 0, 0, -1);
+   _7_62mm := create_object_sid(363, 0, 0, -1);
+
+   grenade_frag:= create_object_sid(25, 0, 0, -1);
+   grenade_plasma:= create_object_sid(26, 0, 0, -1);
+   grenade_pulse:= create_object_sid(27, 0, 0, -1);
+   holy_hand_grenade:= create_object_sid(421, 0, 0, -1);
+   dynamite:= create_object_sid(206, 0, 0, -1);
+   plastic_expl:= create_object_sid(85, 0, 0, -1);
+
+   first_aid_kit:= create_object_sid(47, 0, 0, -1);
+   field_medic_first_aid_kit:= create_object_sid(408, 0, 0, -1);
+   doctors_bag:= create_object_sid(91, 0, 0, -1);
+   paramedics_bag:= create_object_sid(409, 0, 0, -1);
+   stimpak:= create_object_sid(40, 0, 0, -1);
+   radaway:= create_object_sid(48, 0, 0, -1);
+   antidote:= create_object_sid(49, 0, 0, -1);
+   mentats:= create_object_sid(53, 0, 0, -1);
+   buffout:= create_object_sid(87, 0, 0, -1);
+   rad_x:= create_object_sid(109, 0, 0, -1);
+   psycho:= create_object_sid(110, 0, 0, -1);
+   super_stimpak:= create_object_sid(144, 0, 0, -1);
+   jet:= create_object_sid(259, 0, 0, -1);
+   jet_antidote:= create_object_sid(260, 0, 0, -1);
+   healing_powder:= create_object_sid(273, 0, 0, -1);
+
+   knife:= create_object_sid(4, 0, 0, -1);
+   club:= create_object_sid(5, 0, 0, -1);
+   sledgehammer:= create_object_sid(6, 0, 0, -1);
+   crowbar:= create_object_sid(20, 0, 0, -1);
+   brass_nuckles:= create_object_sid(21, 0, 0, -1);
+   throwing_knife:= create_object_sid(45, 0, 0, -1);
+   super_sledge:= create_object_sid(115, 0, 0, -1);
+   ripper:= create_object_sid(116, 0, 0, -1);
+   cattle_prod:= create_object_sid(160, 0, 0, -1);
+   spiked_nuckles:= create_object_sid(234, 0, 0, -1);
+   power_fist:= create_object_sid(235, 0, 0, -1);
+   combat_knife:= create_object_sid(236, 0, 0, -1);
+   switchblade:= create_object_sid(319, 0, 0, -1);
+   shiv:= create_object_sid(383, 0, 0, -1);
+   wrench:= create_object_sid(384, 0, 0, -1);
+   super_cattle_prod:= create_object_sid(399, 0, 0, -1);
+   mega_power_fist:= create_object_sid(407, 0, 0, -1);
+   wakisashi_blade:= create_object_sid(522, 0, 0, -1);
+   little_jesus:= create_object_sid(512, 0, 0, -1);
+   _10mm_pistol:= create_object_sid(8, 0, 0, -1);
+   _10mm_smg:= create_object_sid(9, 0, 0, -1);
+   hunting_rifle:= create_object_sid(10, 0, 0, -1);
+   desert_eagle_44:= create_object_sid(18, 0, 0, -1);
+   _14mm_pistol:= create_object_sid(22, 0, 0, -1);
+   assault_rifle:= create_object_sid(23, 0, 0, -1);
+   shotgun:= create_object_sid(94, 0, 0, -1);
+   _9mm_mauser:= create_object_sid(122, 0, 0, -1);
+   sniper_rifle:= create_object_sid(143, 0, 0, -1);
+   red_ryder_bb_gun:= create_object_sid(161, 0, 0, -1);
+   red_ryder_le_bb_gun:= create_object_sid(162, 0, 0, -1);
+   _223_pistol:= create_object_sid(241, 0, 0, -1);
+   combat_shotgun:= create_object_sid(242, 0, 0, -1);
+   jonny_s_bb_gun:= create_object_sid(261, 0, 0, -1);
+   h_k_caws:= create_object_sid(268, 0, 0, -1);
+   tommy_gun:= create_object_sid(283, 0, 0, -1);
+   scoped_hunting_rifle:= create_object_sid(287, 0, 0, -1);
+   h_k_p90c:= create_object_sid(296, 0, 0, -1);
+   pipe_rifle:= create_object_sid(299, 0, 0, -1);
+   zip_gun:= create_object_sid(300, 0, 0, -1);
+   _44_magnum_revolver:= create_object_sid(313, 0, 0, -1);
+   m3a1_grease_gun_smg:= create_object_sid(332, 0, 0, -1);
+   fn_fal:= create_object_sid(351, 0, 0, -1);
+   h_k_g11:= create_object_sid(352, 0, 0, -1);
+   xl70e3:= create_object_sid(353, 0, 0, -1);
+   pancor_jackhammer:= create_object_sid(354, 0, 0, -1);
+   sawed_off_shotgun:= create_object_sid(385, 0, 0, -1);
+   needler_pistol:= create_object_sid(388, 0, 0, -1);
+   h_k_g11e:= create_object_sid(391, 0, 0, -1);
+   m72_gauss_rifle:= create_object_sid(392, 0, 0, -1);
+   ppk12_gauss_pistol:= create_object_sid(394, 0, 0, -1);
+   _44_magnum_speed_load:= create_object_sid(398, 0, 0, -1);
+   fn_fal_night_sight:= create_object_sid(403, 0, 0, -1);
+   desert_eagle_exp_mag:= create_object_sid(404, 0, 0, -1);
+   assault_rifle_exp_mag:= create_object_sid(405, 0, 0, -1);
+   fn_fal_hpfa:= create_object_sid(500, 0, 0, -1);
+   flamer:= create_object_sid(11, 0, 0, -1);
+   minigun:= create_object_sid(12, 0, 0, -1);
+   rocketlauncher:= create_object_sid(13, 0, 0, -1);
+   bozar:= create_object_sid(350, 0, 0, -1);
+   light_support_weapon:= create_object_sid(355, 0, 0, -1);
+   m60:= create_object_sid(387, 0, 0, -1);
+   avenger_minigun:= create_object_sid(389, 0, 0, -1);
+   vindicator_minigun:= create_object_sid(395, 0, 0, -1);
+   improved_flamer:= create_object_sid(400, 0, 0, -1);
+   plasma_rifle:= create_object_sid(15, 0, 0, -1);
+   laser_pistol:= create_object_sid(16, 0, 0, -1);
+   plasma_pistol:= create_object_sid(24, 0, 0, -1);
+   gatling_laser:= create_object_sid(28, 0, 0, -1);
+   laser_rifle:= create_object_sid(118, 0, 0, -1);
+   turbo_plasma_rifle:= create_object_sid(223, 0, 0, -1);
+   laser_rifle_ext_cap:= create_object_sid(401, 0, 0, -1);
+   magneto_laser_pistol:= create_object_sid(402, 0, 0, -1);
+   plasma_pistol_ext_cap:= create_object_sid(406, 0, 0, -1);
+   yk32_pulse_pistol:= create_object_sid(396, 0, 0, -1);
+   yk42b_pulse_rifle:= create_object_sid(397, 0, 0, -1);
+
+
+   potencial_mats_list := [601, 602, 603, 604, 605 , 606, 318];
+   potencial_mats_list_name := [explosive_material, leather_scraps, scrap_electronics, medical_supplies,metal_scraps, weapon_parts, empty_hypodermic];
+
+   armor_list := [leather_jacket, combat_leather_jacket, leather_armor, leather_armor_mk2, metal_armor, metal_armor_mk2, tesla_armor, combat_armor, combat_armor_mk2, brotherhood_armor, power_armor, hardened_power_armor, advance_power_armor, advance_power_armor_mk2];
+   weapon_list := [knife, club, sledgehammer, crowbar, brass_nuckles, throwing_knife, super_sledge, ripper, cattle_prod, spiked_nuckles, power_fist, combat_knife, switchblade, shiv, wrench, super_cattle_prod, mega_power_fist, wakisashi_blade, little_jesus, _10mm_pistol, _10mm_smg, hunting_rifle, desert_eagle_44, _14mm_pistol, assault_rifle, shotgun, _9mm_mauser, sniper_rifle, red_ryder_bb_gun, red_ryder_le_bb_gun, _223_pistol, combat_shotgun, jonny_s_bb_gun, h_k_caws, tommy_gun, scoped_hunting_rifle, h_k_p90c, pipe_rifle, zip_gun, _44_magnum_revolver, m3a1_grease_gun_smg, fn_fal, h_k_g11, xl70e3, pancor_jackhammer, sawed_off_shotgun, needler_pistol, h_k_g11e, m72_gauss_rifle, ppk12_gauss_pistol, _44_magnum_speed_load, fn_fal_night_sight, desert_eagle_exp_mag, assault_rifle_exp_mag, fn_fal_hpfa, flamer, minigun, rocketlauncher, bozar, light_support_weapon, m60, avenger_minigun, vindicator_minigun, improved_flamer, plasma_rifle, laser_pistol, plasma_pistol, gatling_laser, laser_rifle, turbo_plasma_rifle, laser_rifle_ext_cap, magneto_laser_pistol, plasma_pistol_ext_cap, yk32_pulse_pistol, yk42b_pulse_rifle];
+   ammo_list := [explosive_rocket, _10mm_jhp, _10mm_ap, _44_magnum_jhp, _44_magnum_fmj, flamethrower_fuel, flamethrower_fuel_mk_II, _14mm_ap, _223mm_fmj, _5mm_jhp, _5mm_ap, rocket_ap, small_energy_cell, microfusion_cell, _12_ga_shotgun_shell, _9mm_ball, _bb, _45_caliber, _2mm_ec, _4_7mm_caseless, _9mm, hn_needler_cartrige, hn_ap_needler_cartrige, _7_62mm];
+   misc_list :=[gecko_pelt, golden_gecko_pelt, fire_gecko_pelt, junk, radio, lighter, water_flask, stealth_boy, geiger_counter, motion_sensor];
+   meds_list := [first_aid_kit, field_medic_first_aid_kit, doctors_bag, paramedics_bag, stimpak, radaway, antidote, mentats, buffout, rad_x, psycho, super_stimpak, jet, jet_antidote, healing_powder];
+   explosives_list :=[grenade_frag,grenade_plasma,grenade_pulse,holy_hand_grenade,dynamite,plastic_expl];
+
+   temp_logic_mats_list := [0, 0, 0, 0, 0, 0, 0];
+   temp_logic_mats_list_bool := [0, 0, 0, 0, 0, 0, 0];
+
+   selected_list := [armor_list, weapon_list, ammo_list, misc_list, meds_list, explosives_list];
+
+   if (item_craft_craft_skill_check_handler(items,item_craft)==1) then begin
+      //display_msg("After skill check");
+      foreach (i: item in potencial_mats_list) begin
+         number_of_items := item_craft_craft_caltulator_handler(item, item_craft, items);
+         //display_msg("Items needed: " + item + " - quantity: " + number_of_items);
+         if (number_of_items > 0)then begin
+            temp_logic_mats_list [i] := number_of_items;
+         end
+
+      end
+
+
+      //if (item_craft_craft_item_mats_check(item, number_of_items)==1)then begin
+      //display_msg("Debug: " +temp_logic_mats_list[0] + ", " +temp_logic_mats_list[1] + ", " +temp_logic_mats_list[2] + ", " +temp_logic_mats_list[3] + ", " +temp_logic_mats_list[4]);
+      foreach (i: item in temp_logic_mats_list) begin
+         if (item_craft_craft_item_mats_check(potencial_mats_list[i], temp_logic_mats_list[i])==1)then begin
+            //display_msg("Debug loop");
+            temp_logic_mats_list_bool[i] := 1;
+         end
+      end
+      //display_msg("Debug2: " +temp_logic_mats_list_bool[0] + ", " +temp_logic_mats_list_bool[1] + ", " +temp_logic_mats_list_bool[2] + ", " +temp_logic_mats_list_bool[3] + ", " +temp_logic_mats_list_bool[4]);
+      if (temp_logic_mats_list_bool[0]*temp_logic_mats_list_bool[1]*temp_logic_mats_list_bool[2]*temp_logic_mats_list_bool[3]*temp_logic_mats_list_bool[4] == 1) then begin
+         //display_msg("Debug have all!");
+
+         foreach (i: item in potencial_mats_list) begin
+            if (temp_logic_mats_list[i] >0) then begin
+            //temp := rm_mult_objs_from_inven(dude_obj, obj_carrying_pid_obj(dude_obj, potencial_mats_list_name[i]), temp_logic_mats_list[i]);
+            //display_msg("obj pointer" + obj_carrying_pid_obj(dude_obj, potencial_mats_list[i]) + " item: " + potencial_mats_list[i]);
+               for (j := 0; j < temp_logic_mats_list[i]; j++) begin
+                  rm_obj_from_inven(dude_obj, obj_carrying_pid_obj(dude_obj, potencial_mats_list[i]));
+               end
+            //rm_obj_from_inven(dude_obj, obj_carrying_pid_obj(dude_obj, potencial_mats_list[i]));
+            //   display_msg("Removed:" + potencial_mats_list[i] + " Number: "+ temp_logic_mats_list[i]);
+            end
+
+         end
+         //display_msg("craft_type_list: " + craft_type_list);
+         switch (craft_type_list) begin
+            case 1 :  begin add_obj_to_inven(dude_obj, armor_list[item_craft_craft_item_list_loop(armor_list,item_craft)]);end
+            case 2 :  begin add_obj_to_inven(dude_obj, weapon_list[item_craft_craft_item_list_loop(weapon_list,item_craft)]);end
+            case 3 :  begin add_obj_to_inven(dude_obj, ammo_list[item_craft_craft_item_list_loop(ammo_list,item_craft)]);end
+            case 4 :  begin add_obj_to_inven(dude_obj, misc_list[item_craft_craft_item_list_loop(misc_list,item_craft)]);end
+            case 5 :  begin add_obj_to_inven(dude_obj, meds_list[item_craft_craft_item_list_loop(meds_list,item_craft)]);end
+            case 6 :  begin add_obj_to_inven(dude_obj, explosives_list[item_craft_craft_item_list_loop(explosives_list,item_craft)]);end
+
+
+         end
+         call reward_player(item_craft, craft_mode, items);
+
+
+   end
+   end
+   //else
+      //display_msg("Skill not high enough");
+
+
+end
+
+procedure item_craft_craft_item_list_loop (variable local_items_type_list, variable crafted_item_pid) begin
+
+   variable item, i;
+
+   foreach (i: item in local_items_type_list) begin
+      if (obj_pid(item)==crafted_item_pid) then begin
+         //display_msg("Message in a bottle:" + i);
+         return i;
+      end
+   end
+
+   return -1;
+end
+
+procedure item_craft_craft_item_mats_check (variable item, variable req_number_of_items) begin
+
+   if (dude_item_count(item) >= req_number_of_items) then
+      return 1;
+   else
+      return 0;
+
+
+end
+
+procedure item_craft_dismantle_handler(variable item_dismantled, variable items, variable craft_mode) begin
+
+   variable number_of_items;
+   variable potencial_mats_list;
+   variable potencial_mats_list_name;
+   variable item;
+   variable item_string;
+   leather_scraps := create_object_sid(602, 0, 0, -1);
+   metal_scraps := create_object_sid(605, 0, 0, -1);
+   scrap_electronics := create_object_sid(603, 0, 0, -1);
+   medical_supplies := create_object_sid(604, 0, 0, -1);
+   explosive_material := create_object_sid(601, 0, 0, -1);
+   weapon_parts := create_object_sid(606, 0, 0, -1);
+
+   empty_hypodermic := create_object_sid(318, 0, 0, -1);
+
+   potencial_mats_list := [601, 602, 603, 604, 605, 606, 318];
+   potencial_mats_list_name := [leather_scraps, metal_scraps, scrap_electronics, medical_supplies, explosive_material, weapon_parts, empty_hypodermic];
+   if (item_craft_dismantle_skill_check_handler(items,item_dismantled)==1) then begin
+      rm_obj_from_inven(dude_obj, obj_carrying_pid_obj(dude_obj, item_dismantled));
+      foreach (item in potencial_mats_list) begin
+         number_of_items := item_craft_dismantle_caltulator_handler(item, item_dismantled, items);
+         //display_msg("item_caltulator:" + number_of_items + " Item: " + item);
+         if (number_of_items > 0) then begin
+            item_string := item_prototype_number_to_obj_pointer(item);
+            //display_msg("item_ready_to_add: " + potencial_mats_list_name[item_string] +" quantity "+number_of_items);
+            add_mult_objs_to_inven(dude_obj, potencial_mats_list_name[item_string], number_of_items);
+            call reward_player(item_dismantled, craft_mode, items);
+            //display_msg("item_added");
+         end
+      end
+
+
+   end
+   //else
+   //   display_msg("Skill not high enough");
+
+
+end
+
+procedure item_prototype_number_to_obj_pointer (variable proto_number) begin
+
+   switch (proto_number) begin
+      case 602 : begin
+            return 0;
+         end
+      case 605 : begin
+            return 1;
+         end
+      case 603 : begin
+            return 2;
+         end
+      case 604 : begin
+            return 3;
+         end
+      case 601 : begin
+            return 4;
+         end
+      case 606 : begin
+            return 5;
+         end
+      case 318 : begin
+            return 6;
+         end
+   end
+
+
+end
+
+procedure item_craft_handler (variable item_dismantled, variable craft_mode) begin
+
+
+   items := item_craft_loader;
+
+      switch (craft_mode) begin
+         case 0 : begin
+               display_msg("Default");
+               call item_craft_dismantle_handler(item_dismantled, items,craft_mode);
+            end
+         case 1 : begin
+               if (dude_item_count(item_dismantled) > 0) then begin
+                  //display_msg("Dismantle");
+                  call item_craft_dismantle_handler(item_dismantled, items,craft_mode);
+               end
+               else begin
+                  display_msg("You don't have selected item in your inventory.");
+                  end
+            end
+         case 2 :
+               begin //display_msg("Upgrade");
+            end
+         case 3 :
+               begin //display_msg("Craft");
+               call item_craft_craft_handler(item_dismantled, items,craft_mode);
+            end
+      end
+
+
+end
+
+procedure reward_player (variable item_selected, variable craft_mode, variable items) begin
+
+   variable item;
+   variable xp_for_dismantling :=0;
+   variable xp_for_crafting :=0;
+
+   for (item := 0; item < number_of_items; item++) begin
+      //display_msg("item: " + item + " items: " + items[item]);
+      if (items[item][0]==item_selected)then begin
+         xp_for_dismantling := items[item][14];
+         xp_for_crafting := items[item][15];
+      end
+   end
+
+   switch (craft_mode) begin
+
+      case 0 : begin
+            give_exp_points(0);
+         end
+      case 1 : begin
+            give_exp_points(xp_for_dismantling);
+         end
+      case 2 : begin
+            give_exp_points(0);
+         end
+      case 3 : begin
+            give_exp_points(xp_for_crafting);
+         end
+   end
+
+end
+
+procedure get_item_stats_from_ini (variable item) begin
+   variable temp1;
+   variable temp2;
+   variable temp3;
+   variable temp4;
+   variable temp5;
+   variable temp6;
+   variable temp7;
+   variable temp8;
+   variable temp9;
+   variable temp10;
+   variable temp11;
+   variable temp12;
+   variable temp13;
+   variable temp14;
+   variable temp15;
+   variable temp16;
+   variable sum_as_table;
+
+   temp1 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "number_pid");
+   temp2 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "item_dropped_1_pid");
+   temp3 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "item_dropped_2_pid");
+   temp4 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "item_dropped_1_quantity");
+   temp5 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "item_dropped_2_quantity");
+   temp6 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_1");
+   temp7 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_2");
+   temp8 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_3");
+   temp9 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_1_dismantle");
+   temp10 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_2_dismantle");
+   temp11 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_3_dismantle");
+   temp12 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_1_craft");
+   temp13 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_2_craft");
+   temp14 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "skill_req_3_craft");
+   temp15 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "xp_gain_dismantle");
+   temp16 := get_ini_setting("f2wasp-mod.ini" + "|" + item + "|" + "xp_gain_craft");
+   // display_msg("1 " + temp1 + " " + temp2 + " " + temp3 + " " + temp4 + " " + temp5 + " " + temp6 + " " + temp7 + " " + temp8 + " " + temp9 + " " + temp10 + " " + temp11 + " " + temp12 + " " + temp13 + " " + temp14 + " " + temp15 + " " + temp16);
+   sum_as_table := [temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13, temp14, temp15, temp16];
+
+   return sum_as_table;
+
+end
+
+procedure item_craft_craft_skill_check_handler (variable items,variable item_to_dismantle) begin
+
+   variable item;
+   variable skill_1:=0;
+   variable skill_1_dismantle_level:=0;
+   variable skill_2:=0;
+   variable skill_2_dismantle_level:=0;
+   variable skill_3:=0;
+   variable skill_3_dismantle_level:=0;
+   variable skills := ["Small Guns", "Big Guns","Energy Weapons","Unarmed","Melee Weapons", "Throwing","Frist Aid","Doctor", "Sneak", "Lockpick", "Traps","Science","Repair", "Speech", "Barter", "Gambling", "Outdoorsman"];
+
+   for (item := 0; item < number_of_items; item++) begin
+      //display_msg("item: " + item + " items: " + items[item]);
+      if (items[item][0]==item_to_dismantle)then begin
+         skill_1 := items[item][5];
+         skill_2 := items[item][6];
+         skill_3 := items[item][7];
+         skill_1_dismantle_level:=items[item][11];
+         skill_2_dismantle_level:=items[item][12];
+         skill_3_dismantle_level:=items[item][13];
+      end
+   end
+   //display_msg("skill check");
+   if (skill_3==-1) then begin
+      if (skill_2 ==-1) then begin
+         //display_msg("only1:," + skill_1 + ",dude: " + has_skill(dude_obj,skill_1));
+         if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level) then begin
+            return 1;
+         end
+         else
+            //display_msg ("You need at least : " + skill_1_dismantle_level + " in " + skills[skill_1-1] + " for crafting this item.");
+            display_msg ("Required : " + skills[skill_1 - 1] + " at level: " + skill_1_dismantle_level + ".");
+            return 0;
+      end
+      else
+         //display_msg("only2");
+         if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level and has_skill(dude_obj,skill_2) >= skill_2_dismantle_level) then begin
+            return 1;
+         end
+         else
+            display_msg ("Required : " + skills[skill_1 - 1] + " at level: " + skill_1_dismantle_level + " and " + skills[skill_2 - 1] + " at level: " + skill_2_dismantle_level);
+            return 0;
+   end
+   else
+      //display_msg("only3");
+      if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level and has_skill(dude_obj,skill_2) >= skill_2_dismantle_level and has_skill(dude_obj,skill_3) >= skill_3_dismantle_level) then begin
+         return 1;
+      end
+      else
+         display_msg ("Required : " + skills[skill_1 - 1] + " at level: " + skill_1_dismantle_level + " and " + skills[skill_2 - 1] + " at level: " + skill_2_dismantle_level  + " and " + skills[skill_3 - 1] + " at level: " + skill_3_dismantle_level);
+         return 0;
+
+
+end
+
+procedure item_craft_dismantle_skill_check_handler (variable items,variable item_to_dismantle) begin
+
+   variable item;
+   variable skill_1:=0;
+   variable skill_1_dismantle_level:=0;
+   variable skill_2:=0;
+   variable skill_2_dismantle_level:=0;
+   variable skill_3:=0;
+   variable skill_3_dismantle_level:=0;
+   variable skills := ["Small Guns", "Big Guns","Energy Weapons","Unarmed","Melee Weapons", "Throwing","Frist Aid","Doctor", "Sneak", "Lockpick", "Traps","Science","Repair", "Speech", "Barter", "Gambling", "Outdoorsman"];
+
+   for (item := 0; item < number_of_items; item++) begin
+      //display_msg("item: " + item + " items: " + items[item]);
+      if (items[item][0]==item_to_dismantle)then begin
+         skill_1 := items[item][5];
+         skill_2 := items[item][6];
+         skill_3 := items[item][7];
+         skill_1_dismantle_level:=items[item][8];
+         skill_2_dismantle_level:=items[item][9];
+         skill_3_dismantle_level:=items[item][10];
+      end
+   end
+   //display_msg("skill check");
+   if (skill_3==-1) then begin
+      if (skill_2 ==-1) then begin
+         //display_msg("only1:," + skill_1 + ",dude: " + has_skill(dude_obj,skill_1));
+         if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level) then begin
+            return 1;
+         end
+         else
+            display_msg ("Required : " + skills[skill_1 - 1] + " at level: " + skill_1_dismantle_level + ".");
+            return 0;
+      end
+      else
+         //display_msg("only2");
+         if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level and has_skill(dude_obj,skill_2) >= skill_2_dismantle_level) then begin
+            return 1;
+         end
+         else
+            display_msg ("Required : " + skills[skill_1 - 1] + " at level: " + skill_1_dismantle_level + ".");
+            return 0;
+   end
+   else
+      //display_msg("only3");
+      if (has_skill(dude_obj,skill_1) >= skill_1_dismantle_level and has_skill(dude_obj,skill_2) >= skill_2_dismantle_level and has_skill(dude_obj,skill_3) >= skill_3_dismantle_level) then begin
+         return 1;
+      end
+      else
+         display_msg ("Required : " + skills[skill_1 - 1] + " at level: " + skill_1_dismantle_level + ".");
+         return 0;
+
+
+
+end
+
+
+
+procedure use_p_proc begin
+
+
+display_msg("DEBUG start");
+
+dialogue_system_enter;
+
+end
+
